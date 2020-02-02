@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateBookingTable extends AbstractMigration
+class SportTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -31,9 +31,12 @@ class CreateBookingTable extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('booking');
-        $table->addColumn('doocode', 'string', ['limit'=> 100 ]) //limit: for the string
-              ->addColumn('total_price', 'integer', ['limit'=> 100])
-              ->create();
+        $table = $this->table('sports');
+        $table 
+            ->addColumn('name', 'string', ['limit'=>100])
+            ->addColumn('image', 'string')
+            ->addColumn('created', 'datetime')
+            ->addColumn('updated', 'datetime', ['null' => true])
+            ->create();
     }
 }

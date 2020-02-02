@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateUserTable extends AbstractMigration
+class PaymentMethodTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -31,14 +31,12 @@ class CreateUserTable extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('users');
+        $table = $this->table('paymethod');
         $table
-            ->addColumn('username',  'string', ['limit'=> 100])
-            ->addColumn('password', 'string')
-            ->addColumn('password_salt', 'string')
-            ->addColumn('email', 'string')
-            ->addColumn('phone', 'integer')
+            ->addColumn('name', 'string', ['limit' => 200])
+            ->addColumn('description', 'string')
             ->addColumn('created', 'datetime')
+            ->addColumn('updated', 'datetime', ['null'=>true, 'update'=> "CURRENT_TIMESTAMP"])
             ->create();
     }
 }

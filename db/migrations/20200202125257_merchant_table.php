@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateRolesTable extends AbstractMigration
+class MerchantTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -31,9 +31,12 @@ class CreateRolesTable extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('roles');
-        $table->addColumn('name', 'string')
+        $table = $this->table('merchants');
+        $table
+            ->addColumn('name', 'string', ['limit' => 200])
             ->addColumn('description', 'string')
+            ->addColumn('created', 'datetime')
+            ->addColumn('updated', 'datetime', ['null'=> true, 'update'=> "CURRENT_TIMESTAMP"])
             ->create();
     }
 }

@@ -16,17 +16,19 @@ class UserSeeder extends AbstractSeed
     public function run()
     {
         $faker = Faker\Factory::create();
-        $data = [];
-        for($i=0; $i < 100; $i++){
-            $data = [
+        $data = [
+                'name' => $faker->name,
+                'email' => $faker->email,
                 'username' => $faker->userName,
                 'password' => sha1($faker->password),
-                'password_salt' => sha1('foo'),
-                'email' => $faker->email,
-                'phone' => $faker->phoneNumber,
+                'gender_id' => 1,
+                'dob' => $faker->dayOfMonth, 
+                'image' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLycYQHyrswwDuZ7qjggSUgJ-vdwcjDXwp3NcfmFCd9v5K_rpK',
+                'lat' => -6.179027,
+                'ltg' => 106.777600,
                 'created' => date('Y-m-d H:i:s'),
-            ];
-        }
+                'updated' => date('Y-m-d H:i:s'),
+       ];
         $this->table('users')->insert($data)->save();
     }
 }
